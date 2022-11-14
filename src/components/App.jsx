@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react'
-import './App.css';
+import './index.css';
 import {
   BrowserRouter as Router,
   Routes,
