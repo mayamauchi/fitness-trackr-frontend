@@ -6,6 +6,15 @@ import {
   Route
   
 } from "react-router-dom"; 
+import {
+    Activities,
+    Home,
+    Login,
+    MyRoutines,
+    Navbar,
+    Register,
+    Routines
+} from './'
 
 function App() {
   return (
