@@ -8,7 +8,7 @@ const Navbar = () => {
         <h2>Fitness Tracker</h2>
         <Link to="/Home">Home</Link>
         <Link to="/Login">Login</Link>
-        <Link to="/Register">Register</Link>
+        {/* <Link to="/Register">Register</Link> */}
         <Link to="/Activities">Activities</Link>
         <Link to="/Routines">Routines</Link>
         <Link to="/MyRoutines">My Routines</Link>
