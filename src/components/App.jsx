@@ -3,7 +3,10 @@ import './index.css';
 import {
   BrowserRouter as Router,
   Routes,
-  Route
+  Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider
   
 } from "react-router-dom"; 
 import {
@@ -16,19 +19,23 @@ import {
     Routines
 } from './'
 
-function App() {
-  return (
-    <Fragment>
-      <Router>
-        <div className="container">
-          <Routes>
-            <Route>
-      
+const App = () => {
+    const router = createBrowserRouter(
+        createRoutesFromElements(
+            <Route path="/" element ={<Navbar />}>
+                <Route path ="Home" element={<Home />} />
+                <Route path ="Login" element={<Login />} />
+                <Route path ="Register" element={<Register />} />
+                <Route path ="Activities" element={<Activities />} />
+                <Route path ="Routines" element={<Routines />} />
+                <Route path ="MyRoutines" element={<MyRoutines />} />
             </Route>
-          </Routes>
-        </div>
-      </Router>
-    </Fragment>
+        )
+    )
+  return (
+    <div id="app">
+        <RouterProvider router={router}></RouterProvider>
+    </div>
   );
 }
 
