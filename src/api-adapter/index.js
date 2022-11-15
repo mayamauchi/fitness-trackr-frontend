@@ -120,7 +120,7 @@ export async function getPublicRoutines() {
   } catch (error) {
     console.error(error)
   }
-
+}
 export async function createActivity(post, token) {
   const options = {
     method: 'POST',
