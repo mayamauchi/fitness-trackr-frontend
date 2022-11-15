@@ -82,3 +82,22 @@ export async function loginUser(username, password) {
     console.error(error);
   }
 }
+
+export async function getUserRoutines(username) {
+  const userRoutineOptions = {
+    method: "GET",
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }
+
+  try {
+    const response = await fetch (`${BASE_URL}/api/users/${username}/routines`, userRoutineOptions);
+    const result = await response.json();
+    console.log(result);
+    return result;
+    
+  } catch (error) {
+    console.error(error)
+  }
+}
