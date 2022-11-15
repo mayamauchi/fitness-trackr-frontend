@@ -18,8 +18,8 @@ const Register = (props) => {
     <div className="register-container">
       <h1 className="register-header">Register</h1>
       <form onSubmit={handleRegister}>
-        <input type="text" name="username" placeholder="username" />
-        <input type="password" name="password" placeholder="password" />
+        <input type="text" name="username" placeholder="username *" required />
+        <input type="password" name="password" placeholder="password *" required/>
         <button className="register-button" type="submit">Submit</button>
       </form>
       <Link to="/login">Login</Link>

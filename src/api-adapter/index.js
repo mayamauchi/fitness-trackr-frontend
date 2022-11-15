@@ -45,3 +45,28 @@ export async function registerUser(username, password) {
     console.error(error);
   }
 }
+
+export async function loginUser(username, password) {
+    const loginOptions = {
+        method: "POST",
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    username,
+    password,
+  })
+    };
+    try {
+        const response = await fetch(
+            `${BASE_URL}/api/users/login`,
+            loginOptions
+          );
+          const result = await response.json();
+          console.log(result);
+          return result;
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      
