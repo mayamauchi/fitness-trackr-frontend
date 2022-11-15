@@ -11,11 +11,11 @@ const Activities = () => {
     }
     allActivities();
   }, []);
-  console.log(activities);
+
 
   return (
     <div className="activities">
-      <h2>Hello World</h2>
+      <h2>Activities</h2>
       <div>
         {activities.length ? (
           activities.map((activity) => {
