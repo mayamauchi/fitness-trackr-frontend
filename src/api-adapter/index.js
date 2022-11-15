@@ -120,20 +120,61 @@ export async function getPublicRoutines() {
   } catch (error) {
     console.error(error)
   }
+}
 
-export async function createActivity(post, token) {
-  const options = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    }, body: JSON.stringify({
-      post
-    })
+  export async function createActivity(post, token) {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }, body: JSON.stringify({
+        post
+      })
+    }
+    const response = await fetch(`${BASE_URL}/api/activities`, options)
+    const result = await response.json()
+    return result;
+  
+  
   }
-  const response = await fetch(`${BASE_URL}/api/activities`, options)
-  const result = await response.json()
+
+  export async function createRoutine(name, goal, isPublic) {
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({
+        name,
+        goal,
+        isPublic
+      })
+  }
+  try {
+    const response = await fetch (`${BASE_URL}/api/routines`, options);
+    const result = await response.json();
+    console.log(result);
+    return result;
+    
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export async function editRoutine(name, goal, isPublic) {
+  const options = {
+    method: 'PATCH',
+    body: JSON.stringify({
+      name,
+      goal,
+      isPublic
+    })
+}
+try {
+  const response = await fetch (`${BASE_URL}/api/routines/:routineId`, options);
+  const result = await response.json();
+  console.log(result);
   return result;
-
-
+  
+} catch (error) {
+  console.error(error)
+}
 }
