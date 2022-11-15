@@ -14,10 +14,23 @@ import {
     Register,
     Routines
 } from './'
+// import {getUser} from '../api-adapter'
 
 const App = () => {
+  const [user, setUser] = useState("");
+  const [token, setToken] = useState("");
 
-  
+  // useEffect (() => {
+  //   const localToken = localStorage.getItem("token")
+  //   if (localToken) {
+  //     async function fetchUser() {
+  //       const user = await getUser()
+  //       setUser = user
+  //     }
+  //     fetchUser()
+  //   }
+  // },[])
+
     
 
   return (
