@@ -1,71 +1,29 @@
-import React, {Fragment, useState} from 'react';
-import {Link} from "react-router-dom";
-import { registerUser } from '../api-adapter';
+import React from "react";
+import { Link } from "react-router-dom";
+import { registerUser } from "../api-adapter";
 
-
-
-const Register = () => {
-    const [inputs, setInputs ]= useState({
-        username: "",
-        password:""
-    });
-    const {username, password } = inputs;
-
-    const onChange = (e) => {
-        setInputs({...inputs, [e.target.username]: e.target.value});
-    }
-
-
-    const handleRegister = async(e) => {
-        e.preventDefault()
-
-    }
+const Register = (props) => {
+  async function handleRegister(event) {
+    event.preventDefault();
+    const username = event.target[0].value;
+    const password = event.target[1].value;
+    const token = await registerUser(username, password);
+    localStorage.removeItem("token");
+    localStorage.setItem("token", token);
     
+  }
 
-
-    
-
-    
-
-    // try {
-    //     // const body = {username, password}
-
-    //     // const response = await fetch('http://fitnesstrac-kr.herokuapp.com/api/users/register', {
-    //     //     method: "POST",
-    //     //     headers: {"Content-Type" : "application/json"},
-    //     //     body: JSON.stringify(body),
-    //     // });
-
-
-
-    //     // setAuth(true);
-    // } catch (err) {
-    //     console.error(err.message)
-    // }
-    return (
-        <Fragment>
-            <h1 className="register-header">Register</h1>
-            <form onSubmit={handleRegister}>
-                <input
-                type="text"
-                name= "username"
-                placeholder="username"
-                value={username}
-                onChange={e => onChange(e)}
-                />
-                <input
-                type="password"
-                name= "password"
-                placeholder="password"
-                value={password}
-                onChange={e => onChange(e)}
-                />
-                <button className="register-button">Submit</button>
-            </form>
-            <Link to="/login">Login</Link>
-        </Fragment>
-        );
-
+  return (
+    <div className="register-container">
+      <h1 className="register-header">Register</h1>
+      <form onSubmit={handleRegister}>
+        <input type="text" name="username" placeholder="username" />
+        <input type="password" name="password" placeholder="password" />
+        <button className="register-button">Submit</button>
+      </form>
+      <Link to="/login">Login</Link>
+    </div>
+  );
 };
 
 export default Register;
