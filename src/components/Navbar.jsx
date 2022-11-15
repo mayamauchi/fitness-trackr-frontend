@@ -1,7 +1,8 @@
 import React from "react";
 import { Outlet, Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const user=props.user
   return (
     <div>
       <div id="navbar">
@@ -11,7 +12,7 @@ const Navbar = () => {
         <Link to="/Register">Register</Link>
         <Link to="/Activities">Activities</Link>
         <Link to="/Routines">Routines</Link>
-        <Link to="/MyRoutines">My Routines</Link>
+        {user?<Link to="/MyRoutines">My Routines</Link>: null}
       </div>
       <Outlet />
     </div>
