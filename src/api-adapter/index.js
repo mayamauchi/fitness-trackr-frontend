@@ -29,10 +29,8 @@ export async function registerUser(username, password) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      user: {
-        username,
-        password,
-      },
+      username,
+      password,
     }),
   };
   try {
@@ -41,7 +39,7 @@ export async function registerUser(username, password) {
       registerOptions
     );
     const result = await response.json();
-        console.log(result)
+    console.log(result);
     return result;
   } catch (error) {
     console.error(error);

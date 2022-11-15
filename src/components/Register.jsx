@@ -7,6 +7,7 @@ const Register = (props) => {
     event.preventDefault();
     const username = event.target[0].value;
     const password = event.target[1].value;
+    console.log(username, password)
     const token = await registerUser(username, password);
     localStorage.removeItem("token");
     localStorage.setItem("token", token);
@@ -19,7 +20,7 @@ const Register = (props) => {
       <form onSubmit={handleRegister}>
         <input type="text" name="username" placeholder="username" />
         <input type="password" name="password" placeholder="password" />
-        <button className="register-button">Submit</button>
+        <button className="register-button" type="submit">Submit</button>
       </form>
       <Link to="/login">Login</Link>
     </div>
