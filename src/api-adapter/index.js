@@ -1,18 +1,26 @@
 const BASE_URL = "https://fitnesstrac-kr.herokuapp.com";
 
 export async function getRoutines() {
-  const response = await fetch(`${BASE_URL}/api/users/${username}routines`);
-  const result = await response.json();
-  const routines = result.data.routines;
-  return routines;
+  try {
+    const response = await fetch(`${BASE_URL}/api/routines`);
+    const result = await response.json();
+
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function getActivities() {
+  try {
     const response = await fetch(`${BASE_URL}/api/activities`);
     const result = await response.json();
-    const activities = result.data.activity;
-    return activities;
+
+    return result;
+  } catch (error) {
+    console.log(error);
   }
+}
 
 // export async function getUser(token, setUser) {
 //   try {
@@ -54,26 +62,22 @@ export async function registerUser(username, password) {
 }
 
 export async function loginUser(username, password) {
-    const loginOptions = {
-        method: "POST",
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    username,
-    password,
-  })
-    };
-    try {
-        const response = await fetch(
-            `${BASE_URL}/api/users/login`,
-            loginOptions
-          );
-          const result = await response.json();
-          console.log(result);
-          return result;
-        } catch (error) {
-          console.error(error);
-        }
-      }
-      
+  const loginOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username,
+      password,
+    }),
+  };
+  try {
+    const response = await fetch(`${BASE_URL}/api/users/login`, loginOptions);
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
