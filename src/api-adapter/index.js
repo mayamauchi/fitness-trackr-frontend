@@ -102,6 +102,25 @@ export async function getUserRoutines(username) {
   }
 }
 
+
+export async function getPublicRoutines() {
+  const publicRoutineOptions = {
+    method: "GET",
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }
+
+  try {
+    const response = await fetch (`${BASE_URL}/api/routines`, publicRoutineOptions);
+    const result = await response.json();
+    console.log(result);
+    return result;
+    
+  } catch (error) {
+    console.error(error)
+  }
+
 export async function createActivity(post, token) {
   const options = {
     method: 'POST',
@@ -115,5 +134,6 @@ export async function createActivity(post, token) {
   const response = await fetch(`${BASE_URL}/api/activities`, options)
   const result = await response.json()
   return result;
+
 
 }
