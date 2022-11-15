@@ -14,20 +14,21 @@ export async function getActivities() {
     return activities;
   }
 
-// export async function getUser(token, setUser) {
-//   try {
-//     const response = await fetch(`${BASE_URL}/api/users/me`, {
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${token}`,
-//       },
-//     });
-//     const result = await response.json();
-//     return result;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+export async function authUser(token) {
+  try {
+    const response = await fetch(`${BASE_URL}/api/users/me`, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+      },
+    });
+    const result = await response.json();
+    console.log(result)
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 export async function registerUser(username, password) {
   const registerOptions = {

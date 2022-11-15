@@ -14,22 +14,24 @@ import {
     Register,
     Routines
 } from './'
-// import {getUser} from '../api-adapter'
+import {authUser} from '../api-adapter'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const [user, setUser] = useState("");
   const [token, setToken] = useState("");
 
-  // useEffect (() => {
-  //   const localToken = localStorage.getItem("token")
-  //   if (localToken) {
-  //     async function fetchUser() {
-  //       const user = await getUser()
-  //       setUser = user
-  //     }
-  //     fetchUser()
-  //   }
-  // },[])
+  useEffect (() => {
+    const localToken = localStorage.getItem("token")
+    if (localToken) {
+      async function fetchUser() {
+        const me = await authUser(localToken)
+        setUser(me)
+      }
+      fetchUser()
+    }
+  },[])
 
     
 
@@ -37,9 +39,9 @@ const App = () => {
     <div id="app">
         <Router>
           <Routes>
-            <Route path="/" element ={<Navbar />}>
+            <Route path="/" element ={<Navbar user={user}/>}>
                   <Route path ="Home" element={<Home />} />
-                  <Route path ="Login" element={<Login />} />
+                  <Route path ="Login" element={<Login setUser={setUser}/>} />
                   <Route path ="Register" element={<Register />} />
                   <Route path ="Activities" element={<Activities />} />
                   <Route path ="Routines" element={<Routines />} />
@@ -47,6 +49,7 @@ const App = () => {
               </Route>
           </Routes>
         </Router>
+        <ToastContainer/>
     </div>
   );
 }
