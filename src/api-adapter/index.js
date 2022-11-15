@@ -122,6 +122,7 @@ export async function getPublicRoutines() {
   }
 }
 
+
   export async function createActivity(post, token) {
     const options = {
       method: 'POST',
@@ -137,6 +138,7 @@ export async function getPublicRoutines() {
     return result;
   
   
+
   }
 
   export async function createRoutine(name, goal, isPublic) {

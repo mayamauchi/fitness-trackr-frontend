@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getActivities } from "../api-adapter";
-import { SingleActivity } from "./";
+import { SingleActivity, CreateActivity } from "./";
 
 const Activities = () => {
   const [activities, setActivities] = useState([]);
@@ -15,6 +15,7 @@ const Activities = () => {
 
   return (
     <div className="activities">
+        <CreateActivity />
       <h2>Activities</h2>
       <div>
         {activities.length ? (
