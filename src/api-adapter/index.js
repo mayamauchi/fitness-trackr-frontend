@@ -1,11 +1,18 @@
 const BASE_URL = "https://fitnesstrac-kr.herokuapp.com";
 
 export async function getRoutines() {
-  const response = await fetch(`${BASE_URL}/api/routines`);
+  const response = await fetch(`${BASE_URL}/api/users/${username}routines`);
   const result = await response.json();
   const routines = result.data.routines;
   return routines;
 }
+
+export async function getActivities() {
+    const response = await fetch(`${BASE_URL}/api/activities`);
+    const result = await response.json();
+    const activities = result.data.activity;
+    return activities;
+  }
 
 // export async function getUser(token, setUser) {
 //   try {

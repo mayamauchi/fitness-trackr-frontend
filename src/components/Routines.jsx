@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { getRoutines } from "../api-adapter";
 
 const Routines = () => {
+  const [routines, setRoutines] = useState({});
   useEffect(() => {
-    const [routines, setRoutines] = useState({});
     async function allRoutines() {
       const routinesList = await getRoutines();
     }
