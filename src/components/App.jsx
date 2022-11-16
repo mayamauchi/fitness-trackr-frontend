@@ -38,7 +38,7 @@ const App = () => {
             <Route path="Register" element={<Register />} />
             <Route path="Activities" element={<Activities />} />
             <Route path="Routines" element={<Routines />} />
-            <Route path="MyRoutines" element={<MyRoutines />} />
+            <Route path="MyRoutines" element={<MyRoutines setUser={setUser}/>} />
           </Route>
         </Routes>
       </Router>

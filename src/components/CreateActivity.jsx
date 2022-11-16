@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createActivity} from '../api-adapter'
+import { createActivity} from '../api-adapter';
+
 
 const CreateActivity = (props) => {
     const [name, setName] = useState("");
@@ -15,7 +16,10 @@ const CreateActivity = (props) => {
         props.setActivities([newActivity, ...props.activities])
         setName('')
         setDescription('')
+
+
         navigate('/Activities')
+
     }
 
 

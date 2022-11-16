@@ -1,72 +1,111 @@
-import React, {useState} from 'react';
-import {useParams} from 'react-router-dom';
-import { editRoutine, deleteRoutine, createRoutine } from "../api-adapter";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { SingleRoutine } from "./";
 
-const myRoutines = () => {
-const [name, setName] = useState("");
-const [goal, setGoal] = useState("");
-async function handleSubmit(e) {
+import {
+  editRoutine,
+  deleteRoutine,
+  createRoutine,
+  getUserRoutines,
+} from "../api-adapter";
+
+const MyRoutines = (props) => {
+  const routine = props.routine;
+//   console.log(routine);
+  const [name, setName] = useState("");
+  const [goal, setGoal] = useState("");
+  const [routines, setRoutines] = useState([]);
+  const [isPublic, setisPublic] = useState(false);
+
+  const navigate = useNavigate();
+  async function handleSubmit(e) {
     e.preventDefault();
-    const {token} = await createRoutine(name, goal);
-    console.log("created new routine");
+    const token = localStorage.getItem("token");
+    const newRoutine = await createRoutine(name, goal, isPublic, token);
 
-    localStorage.removeItem("token");
-    localStorage.setItem("token", token);
-    setGoal("")
-    setName("")
+    setGoal("");
+    setName("");
 
-}
+    navigate("/MyRoutines");
+  }
 
-// function handleChange(e) {
-//     e.preventDefault();
-//     const toEdit = e.target.id;
-//     const edit = e.target.value; 
-//     const editedForm = {...formDetails,[toEdit]: edit};
-// }
+  useEffect(() => {
+    async function allRoutines() {
+        const token = localStorage.getItem("token")
+        const username = localStorage.getItem("username")
 
-// async function handleDelete(e) {
-//     e.preventDefault();
-//     const toDelete = e.target.id;
-//     const token = localStorage.getItem("token");
-//     const deleted = await deleteRoutine(toDelete, token);
-    
-// }
+      const routinesList = await getUserRoutines(username, token);
+      setRoutines(routinesList);
+    }
+    allRoutines();
+  }, []);
 
-async function handleSubmit(e) {
-    console.log(routine.id)
+  // function handleChange(e) {
+  //     e.preventDefault();
+  //     const toEdit = e.target.id;
+  //     const edit = e.target.value;
+  //     const editedForm = {...formDetails,[toEdit]: edit};
+  // }
 
-    e.preventDefault();
-    const editedRoutine = await editRoutine(
-        formDetails,
-        routines.routine.id,
-        
-        localStorage.getItem("token")
-        
-    );
-}
-//need to import getUserRoutines from api
+  // async function handleDelete(e) {
+  //     e.preventDefault();
+  //     const toDelete = e.target.id;
+  //     const token = localStorage.getItem("token");
+  //     const deleted = await deleteRoutine(toDelete, token);
 
+  // }
+  //need to import getUserRoutines from api
 
+  return (
+    <div className="myroutines-container">
+      <h2>Create New Routine</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="name"
+          placeholder="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          label="Activity Name"
+        />
+        <input
+          type="text"
+          name="goal"
+          placeholder="goal"
+          value={goal}
+          onChange={(e) => setGoal(e.target.value)}
+          label="Activity Description"
+        />
+        <button className="myroutines-button" type="submit">
+          Create
+        </button>
+        <button className="myroutines-button" type="submit">
+          Edit
+        </button>
+        <button className="myroutines-button" type="submit">
+          Delete
+        </button>
+      </form>
 
-
-
-
-    return (
-        <div className="myroutines-container">
-            <h2>Create New Routine</h2>
-            <form>
-                <input type="text" name="name" placeholder="name"/>
-                <input type="text" name="goal" placeholder="goal"/>
-                <button className="myroutines-button" type="submit">Create</button>
-                <button className="myroutines-button" type="submit">Edit</button>
-                <button className="myroutines-button" type="submit">Delete</button>
-
-            </form>
+      <div className="myRoutines">
+        <div>My Routines</div>
+        <div>
+          {routines.length ? (
+            routines.map((routine) => {
+              return (
+                <SingleRoutine
+                  routine={routine}
+                  key={`routine-${routine.id}`}
+                />
+              );
+            })
+          ) : (
+            <div>Loading Routines</div>
+          )}
         </div>
+      </div>
+    </div>
+  );
+};
 
-    )
-    
-
-}
-
-export default myRoutines;
+export default MyRoutines;

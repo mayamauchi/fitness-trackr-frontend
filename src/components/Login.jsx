@@ -13,8 +13,12 @@ const Login = ({setUser}) => {
     event.preventDefault();
     console.log(username, password);
     const { token, user } = await loginUser(username, password);
+    console.log(token)
     localStorage.removeItem("token");
     localStorage.setItem("token", token);
+    localStorage.removeItem("username");
+    localStorage.setItem("username", username);
+
     setUsername("");
     setPassword("");
     setUser(user)
