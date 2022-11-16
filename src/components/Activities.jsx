@@ -15,13 +15,14 @@ const Activities = () => {
 
   return (
     <div className="activities">
-        <CreateActivity />
+        <CreateActivity activities={activities} setActivities={setActivities}/>
       <h2>Activities</h2>
       <div>
-        {activities.length ? (
+        {activities && activities.length ? (
           activities.map((activity) => {
             return (
               <SingleActivity activity={activity} key={`activity-${activity.id}`}/>
+              
             );
           })
         ) : (
