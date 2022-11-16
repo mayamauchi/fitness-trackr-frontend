@@ -129,9 +129,9 @@ export async function getPublicRoutines() {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
-      }, body: JSON.stringify({
+      }, body: JSON.stringify(
         post
-      })
+      )
     }
     const response = await fetch(`${BASE_URL}/api/activities`, options)
     const result = await response.json()

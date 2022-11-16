@@ -16,7 +16,6 @@ import "react-toastify/dist/ReactToastify.css";
 const App = () => {
   const [user, setUser] = useState("");
   const [token, setToken] = useState("");
-  
 
   useEffect(() => {
     const localToken = localStorage.getItem("token");

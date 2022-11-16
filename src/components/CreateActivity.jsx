@@ -12,7 +12,9 @@ const CreateActivity = (props) => {
             name,
             description,
         }, localStorage.getItem('token'));
-        props.fetchActivities()
+        props.setActivities([newActivity, ...props.activities])
+        setName('')
+        setDescription('')
         navigate('/Activities')
     }
 
