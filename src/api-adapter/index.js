@@ -95,7 +95,7 @@ export async function getUserRoutines(username, token) {
   try {
     const response = await fetch (`${BASE_URL}/api/users/${username}/routines`, userRoutineOptions);
     const result = await response.json();
-    console.log(result);
+    // console.log(result);
     return result;
     
   } catch (error) {
