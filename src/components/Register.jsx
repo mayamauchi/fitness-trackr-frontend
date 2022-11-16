@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../api-adapter";
-import {toast} from 'react-toastify'; 
+import {toast, ToastContainer} from 'react-toastify'; 
 
 
 const Register = () => {
@@ -20,13 +20,16 @@ const Register = () => {
     
     if (token) {
       toast.success("Register Successful")
+      navigate("/Home");
 
     } else {
       toast.error("Register Failed")
-
+      navigate("/Register")
     }
 
-    navigate("/Home");
+    
+
+    
   }
 
   return (
@@ -53,6 +56,7 @@ const Register = () => {
           Submit
         </button>
       </form>
+      <p>*password must be 8 characters or more</p>
       <Link to="/login">Login</Link>
     </div>
   );

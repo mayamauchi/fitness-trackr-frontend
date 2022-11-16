@@ -180,3 +180,23 @@ try {
   console.error(error)
 }
 }
+
+export async function addActivityToRoutine(activityId, count, duration) {
+  const options = {
+    method: "POST",
+    body: JSON.stringify({
+      activityId: 7,
+      count: 1, 
+      duration: 20
+    })
+  }
+  try {
+    const response = await fetch (`${BASE_URL}/api/routines/:routineId/activities`, options);
+    const result = await response.json();
+    console.log(result);
+    return result;
+    
+  } catch (error) {
+    console.error(error)
+  }
+  }
