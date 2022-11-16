@@ -181,6 +181,25 @@ try {
 }
 }
 
+export async function deleteRoutine(token) {
+  const options = {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+}
+try {
+  const response = await fetch (`${BASE_URL}/api/routines/:routineId`, options);
+  const result = await response.json();
+  console.log(result);
+  return result;
+  
+} catch (error) {
+  console.error(error)
+}
+}
+
 export async function addActivityToRoutine(activityId, count, duration) {
   const options = {
     method: "POST",
