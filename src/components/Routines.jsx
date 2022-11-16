@@ -20,10 +20,10 @@ const Routines = () => {
           {routines.length ? (
             routines.map((routine) => {
               return (
-                <>
+                
                 <SingleRoutine routine={routine} key={`routine-${routine.id}`}/>
                 
-                </>
+                
               );
             })
           ) : (
