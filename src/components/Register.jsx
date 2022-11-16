@@ -58,8 +58,8 @@ const Register = () => {
       </form>
       <p>*password must be 8 characters or more</p>
       <br />
-      <p>Already a User?</p>
-      <Link to="/login">Login</Link>
+      <h3>Already a User?</h3>
+      <Link to="/login" className="link">Login</Link>
     </div>
   );
 };

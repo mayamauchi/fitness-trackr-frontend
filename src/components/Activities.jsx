@@ -15,10 +15,10 @@ const Activities = () => {
 
 
   return (
-    <div className="activities">
+    <div className="activities-container">
         <CreateActivity activities={activities} setActivities={setActivities}/>
       <h2>Activities</h2>
-      <div>
+      <div id="activitiesList">
         {activities && activities.length ? (
           activities.map((activity) => {
             return (

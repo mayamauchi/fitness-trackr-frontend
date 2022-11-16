@@ -60,8 +60,8 @@ const Login = ({setUser}) => {
         </button>
       </form>
       <br />
-      <p>Not Yet a User?</p>
-      <Link to="/register">Register</Link>
+      <h3>Not Yet a User?</h3>
+      <Link to="/register" className="link">Register</Link>
     </div>
   );
 };
