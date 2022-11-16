@@ -14,7 +14,7 @@ const Routines = () => {
     
   
     return (
-      <div className="routines">
+      <div className="routines-container">
         <h2>Routines</h2>
         <div>
           {routines.length ? (

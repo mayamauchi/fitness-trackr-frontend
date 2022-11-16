@@ -57,7 +57,7 @@ const MyRoutines = (props) => {
   //need to import getUserRoutines from api
 
   return (
-    <div className="myroutines-container">
+    <div className="myRoutines-container">
       <h2>Create New Routine</h2>
       <form onSubmit={handleSubmit}>
         <input
@@ -88,7 +88,7 @@ const MyRoutines = (props) => {
       </form>
 
       <div className="myRoutines">
-        <div>My Routines</div>
+        <div><h3>My Routines</h3></div>
         <div>
           {routines.length ? (
             routines.map((routine) => {
@@ -101,8 +101,8 @@ const MyRoutines = (props) => {
             })
           ) : (
             <div>Loading Routines</div>
-          )}
-        </div>
+          )}</div>
+        
       </div>
     </div>
   );

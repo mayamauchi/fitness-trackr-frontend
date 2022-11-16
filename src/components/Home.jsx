@@ -3,7 +3,9 @@ import React from 'react'
 const Home = () => {
     return <div>
         <h2>Home</h2>
-        <img src="fitness.jpg" id="fitnessPic" alt="" />
+        <div id="fitnessPic">
+        <img src="fitness.jpg" id='pic'  alt="" />
+        </div>
     </div>
 
 }
