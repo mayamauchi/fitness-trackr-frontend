@@ -34,7 +34,7 @@ const Login = ({setUser}) => {
   }
   return (
     <div className="login-container">
-      <h1 className="login-header">Login</h1>
+      <h2 className="login-header">Login</h2>
       <form onSubmit={handleLogin}>
         <input
           type="text"
@@ -56,9 +56,11 @@ const Login = ({setUser}) => {
           }}
         />
         <button className="login-button" type="submit">
-          Submit
+          Login
         </button>
       </form>
+      <br />
+      <p>Not Yet a User?</p>
       <Link to="/register">Register</Link>
     </div>
   );

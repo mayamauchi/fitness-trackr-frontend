@@ -34,7 +34,7 @@ const Register = () => {
 
   return (
     <div className="register-container">
-      <h1 className="register-header">Register</h1>
+      <h2 className="register-header">Register</h2>
       <form onSubmit={handleRegister}>
         <input type="text" name="username" placeholder="username *" required value={username}
           onChange={function (event) {
@@ -53,10 +53,12 @@ const Register = () => {
           }}
         />
         <button className="register-button" type="submit">
-          Submit
+          Register
         </button>
       </form>
       <p>*password must be 8 characters or more</p>
+      <br />
+      <p>Already a User?</p>
       <Link to="/login">Login</Link>
     </div>
   );
