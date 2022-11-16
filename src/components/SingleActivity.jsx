@@ -2,7 +2,7 @@ import React from "react";
 
 const SingleActivity = (props) => {
     const activity = props.activity;
-    console.log(activity)
+    // console.log(activity)
     return(
         <div className="single-activity">
             <div>Id: {activity.id} </div>
