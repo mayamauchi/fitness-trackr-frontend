@@ -2,6 +2,7 @@ import React from "react";
 
 const SingleActivity = (props) => {
     const activity = props.activity;
+
     return(
         <div className="single-activity">
             <div>Id: {activity.id} </div>
