@@ -83,11 +83,12 @@ export async function loginUser(username, password) {
   }
 }
 
-export async function getUserRoutines(username) {
+export async function getUserRoutines(username, token) {
   const userRoutineOptions = {
     method: "GET",
     headers: {
       'Content-Type': 'application/json',
+      "Authorization": `Bearer ${token}`,
     },
   }
 
@@ -141,9 +142,12 @@ export async function getPublicRoutines() {
 
   }
 
-  export async function createRoutine(name, goal, isPublic) {
+  export async function createRoutine(name, goal, isPublic, token) {
     const options = {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`},
       body: JSON.stringify({
         name,
         goal,

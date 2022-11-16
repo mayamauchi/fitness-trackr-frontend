@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getActivities } from "../api-adapter";
 import { SingleActivity, CreateActivity } from "./";
 
+
 const Activities = () => {
   const [activities, setActivities] = useState([]);
   useEffect(() => {
