@@ -16,6 +16,7 @@ const MyRoutines = (props) => {
   const [goal, setGoal] = useState("");
   const [routines, setRoutines] = useState([]);
   const [isPublic, setisPublic] = useState(false);
+ 
 
   const navigate = useNavigate();
   async function handleSubmit(e) {
@@ -40,26 +41,15 @@ const MyRoutines = (props) => {
     allRoutines();
   }, []);
 
-  // function handleChange(e) {
-  //     e.preventDefault();
-  //     const toEdit = e.target.id;
-  //     const edit = e.target.value;
-  //     const editedForm = {...formDetails,[toEdit]: edit};
-  // }
 
-  // async function handleDelete(e) {
-  //     e.preventDefault();
-  //     const toDelete = e.target.id;
-  //     const token = localStorage.getItem("token");
-  //     const deleted = await deleteRoutine(toDelete, token);
 
-  // }
-  //need to import getUserRoutines from api
+
+
 
   return (
     <div className="myroutines-container">
       <h2>Create New Routine</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} >
         <input
           type="text"
           name="name"
@@ -79,17 +69,13 @@ const MyRoutines = (props) => {
         <button className="myroutines-button" type="submit">
           Create
         </button>
-        <button className="myroutines-button" type="submit">
-          Edit
-        </button>
-        <button className="myroutines-button" type="submit">
-          Delete
-        </button>
+        
+        
       </form>
 
       <div className="myRoutines">
         <div>My Routines</div>
-        <div>
+        <div >
           {routines.length ? (
             routines.map((routine) => {
               return (
@@ -97,11 +83,13 @@ const MyRoutines = (props) => {
                   routine={routine}
                   key={`routine-${routine.id}`}
                 />
+                
               );
             })
           ) : (
             <div>Loading Routines</div>
           )}
+          
         </div>
       </div>
     </div>
