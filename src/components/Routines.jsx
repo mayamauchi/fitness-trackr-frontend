@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getRoutines } from "../api-adapter";
-import { SingleRoutine } from "./"
+import { SingleRoutine} from "./"
 
 const Routines = () => {
     const [routines, setRoutines] = useState([]);
@@ -20,7 +20,10 @@ const Routines = () => {
           {routines.length ? (
             routines.map((routine) => {
               return (
+                <>
                 <SingleRoutine routine={routine} key={`routine-${routine.id}`}/>
+                
+                </>
               );
             })
           ) : (

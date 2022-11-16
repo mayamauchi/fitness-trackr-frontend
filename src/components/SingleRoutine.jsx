@@ -2,12 +2,13 @@ import React from "react";
 
 const SingleRoutine = (props) => {
     const routine = props.routine;
-
     return(
         <div className="single-routine">
-            <div>{routine.name} </div>
-            <div>{routine.goal} </div>
-            <div>{routine.creatorId} </div>
+            <div>Routine Name: {routine.name} </div>
+            <div>Goals: {routine.goal} </div>
+            <div> Created By: {routine.creatorName} </div>
+            <br></br>
+            {/*take out br when working on CSS*/}
         </div>
 
     )
