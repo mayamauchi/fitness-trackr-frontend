@@ -1,16 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-const Logout = (props) => {
-    async function clearUser(event) {
+const Logout = () => {
+    
+    const user = useState("")
+    async function handleLogout(event) {
         event.preventDefault();
         localStorage.removeItem('token');
         localStorage.removeItem('username');
-        
+        console.log(user, 'user')
+        setIsLoggedIn(false)
     }
 
     return (
         <div>
-            <form onSubmit={clearUser}>
+            <form onSubmit={handleLogout}>
                 <button id="logoutBtn" type='submit'>
                     Logout
                 </button>
