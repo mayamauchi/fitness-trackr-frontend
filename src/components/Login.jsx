@@ -13,9 +13,7 @@ const Login = ({setUser}) => {
   async function handleLogin(event) {
     
     event.preventDefault();
-    console.log(username, password);
     const { token, user } = await loginUser(username, password);
-    console.log(token)
     
     localStorage.removeItem("token");
     localStorage.setItem("token", token);
@@ -25,7 +23,7 @@ const Login = ({setUser}) => {
     setUsername("");
     setPassword("");
     setUser(user)
-    console.log(user, "boo")
+    setIsLoggedIn(true)
 
     if (token) {
       toast.success("Login Successful")

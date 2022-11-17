@@ -16,7 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 const App = () => {
   const [user, setUser] = useState("");
   const [token, setToken] = useState("");
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
     const localToken = localStorage.getItem("token");
     if (localToken) {
@@ -34,11 +34,14 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Navbar user={user} />}>
             <Route path="Home" element={<Home />} />
-            <Route path="Login" element={<Login setUser={setUser} />} />
+            <Route path="Login" element={<Login setUser={setUser} setIsLoggedIn={setIsLoggedIn} />} />
             <Route path="Register" element={<Register />} />
             <Route path="Activities" element={<Activities />} />
             <Route path="Routines" element={<Routines />} />
-            <Route path="MyRoutines" element={<MyRoutines setUser={setUser}/>} />
+            <Route
+              path="MyRoutines"
+              element={<MyRoutines setUser={setUser} />}
+            />
           </Route>
         </Routes>
       </Router>
