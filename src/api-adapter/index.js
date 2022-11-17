@@ -165,17 +165,16 @@ export async function getPublicRoutines() {
   }
 }
 
-export async function editRoutine(name, goal, isPublic) {
+export async function editRoutine( id, token, routine) {
   const options = {
     method: 'PATCH',
-    body: JSON.stringify({
-      name,
-      goal,
-      isPublic
-    })
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`},
+    body: JSON.stringify(routine)
 }
 try {
-  const response = await fetch (`${BASE_URL}/api/routines/:routineId`, options);
+  const response = await fetch (`${BASE_URL}/api/routines/${id}`, options);
   const result = await response.json();
   console.log(result);
   return result;
@@ -204,17 +203,17 @@ try {
 }
 }
 
-export async function addActivityToRoutine(activityId, count, duration) {
+export async function addActivityToRoutine(routineId, activityId, count, duration) {
   const options = {
     method: "POST",
     body: JSON.stringify({
-      activityId: 7,
-      count: 1, 
-      duration: 20
+      activityId,
+      count,
+      duration
     })
   }
   try {
-    const response = await fetch (`${BASE_URL}/api/routines/:routineId/activities`, options);
+    const response = await fetch (`${BASE_URL}/api/routines/${routineId}/activities`, options);
     const result = await response.json();
     console.log(result);
     return result;

@@ -7,11 +7,12 @@ import {
   deleteRoutine,
   createRoutine,
   getUserRoutines,
+  
 } from "../api-adapter";
 
 const MyRoutines = (props) => {
   const routine = props.routine;
-//   console.log(routine);
+  //   console.log(routine);
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
   const [routines, setRoutines] = useState([]);
@@ -32,8 +33,8 @@ const MyRoutines = (props) => {
 
   useEffect(() => {
     async function allRoutines() {
-        const token = localStorage.getItem("token")
-        const username = localStorage.getItem("username")
+      const token = localStorage.getItem("token");
+      const username = localStorage.getItem("username");
 
       const routinesList = await getUserRoutines(username, token);
       setRoutines(routinesList);
@@ -41,15 +42,10 @@ const MyRoutines = (props) => {
     allRoutines();
   }, []);
 
-
-
-
-
-
   return (
     <div className="myRoutines-container">
       <h2>Create New Routine</h2>
-      <form onSubmit={handleSubmit} >
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="name"
@@ -69,13 +65,12 @@ const MyRoutines = (props) => {
         <button className="myroutines-button" type="submit">
           Create
         </button>
-        
-        
       </form>
 
       <div className="myRoutines">
-
-        <div><h3>My Routines</h3></div>
+        <div>
+          <h3>My Routines</h3>
+        </div>
         <div>
           {routines.length ? (
             routines.map((routine) => {
@@ -84,18 +79,17 @@ const MyRoutines = (props) => {
                   routine={routine}
                   key={`routine-${routine.id}`}
                 />
-                
               );
             })
           ) : (
             <div>Loading Routines</div>
-
           )}
-          
         </div>
       </div>
     </div>
   );
+
 };
+
 
 export default MyRoutines;

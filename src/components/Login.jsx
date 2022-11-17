@@ -31,6 +31,8 @@ const Login = ({setUser}) => {
 
     }
     navigate("/Home");
+
+    //work on logout function
   }
   return (
     <div className="login-container">
