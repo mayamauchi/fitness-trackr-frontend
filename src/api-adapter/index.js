@@ -185,7 +185,7 @@ try {
 }
 }
 
-export async function deleteRoutine(token) {
+export async function deleteRoutine(id, token) {
   const options = {
     method: 'DELETE',
     headers: {
@@ -194,7 +194,7 @@ export async function deleteRoutine(token) {
     }
 }
 try {
-  const response = await fetch (`${BASE_URL}/api/routines/:routineId`, options);
+  const response = await fetch (`${BASE_URL}/api/routines/${id}`, options);
   const result = await response.json();
   console.log(result);
   return result;
