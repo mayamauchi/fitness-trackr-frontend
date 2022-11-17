@@ -12,7 +12,7 @@ const Navbar = (props) => {
       <div>
       <h2>Fitness Tracker</h2>
       <LoggedIn user={user}/>
-      {isLoggedIn == true ? (<Logout handleLogout={handleLogout} setIsLoggedIn={setIsLoggedIn}/>) : 
+      {setIsLoggedIn == true ? (<Logout handleLogout={handleLogout} setIsLoggedIn={setIsLoggedIn}/>) : 
       null}
       
       </div>
