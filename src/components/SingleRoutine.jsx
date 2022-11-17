@@ -3,7 +3,7 @@ import { editRoutine, deleteRoutine } from "../api-adapter";
 
 const SingleRoutine = (props) => {
   const routine = props.routine;
-  console.log(routine);
+//   console.log(routine);
 
   const [newName, setNewName] = useState(routine.name);
   const [newGoal, setNewGoal] = useState(routine.goal);
