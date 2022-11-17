@@ -1,11 +1,16 @@
 import React from "react";
 import { Outlet, Link } from "react-router-dom";
+import {LoggedIn, Logout} from "./";
 
 const Navbar = (props) => {
   const user = props.user;
   return (
     <div>
+      <div>
       <h2>Fitness Tracker</h2>
+      <LoggedIn user={user}/>
+      <Logout />
+      </div>
       <div id="navbar">
         <Link to="/Home">Home</Link>
         <Link to="/Login">Login</Link>

@@ -5,15 +5,18 @@ import {toast} from 'react-toastify';
 
 
 const Login = ({setUser}) => {
+  
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   async function handleLogin(event) {
+    
     event.preventDefault();
     console.log(username, password);
     const { token, user } = await loginUser(username, password);
     console.log(token)
+    
     localStorage.removeItem("token");
     localStorage.setItem("token", token);
     localStorage.removeItem("username");
@@ -22,6 +25,7 @@ const Login = ({setUser}) => {
     setUsername("");
     setPassword("");
     setUser(user)
+    console.log(user, "boo")
 
     if (token) {
       toast.success("Login Successful")
