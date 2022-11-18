@@ -20,7 +20,6 @@ const App = () => {
   useEffect(() => {
     const localToken = localStorage.getItem("token");
     if (localToken && !isLoggedIn) {
-        console.log("dangerous ")
       async function fetchUser() {
         const me = await authUser(localToken);
         setUser(me);
