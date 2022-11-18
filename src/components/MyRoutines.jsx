@@ -16,7 +16,7 @@ const MyRoutines = (props) => {
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
   const [routines, setRoutines] = useState([]);
-  const [isPublic, setisPublic] = useState(false);
+  const [isPublic, setIsPublic] = useState(false);
  
 
   const navigate = useNavigate();
