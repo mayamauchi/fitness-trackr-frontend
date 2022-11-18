@@ -52,7 +52,8 @@ const SingleRoutine = (props) => {
       name: newName,
       goal: newGoal,
       isPublic: isPublic,
-    });
+    },
+    window.location.reload());
   }
 
 //   //Add activity to routine
@@ -81,6 +82,7 @@ const SingleRoutine = (props) => {
     const token = localStorage.getItem("token");
 
     const deleted = await deleteRoutine(toDelete, token);
+    window.location.reload()
   }
 
   //   function refreshPage(){
