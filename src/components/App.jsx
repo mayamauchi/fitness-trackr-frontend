@@ -32,7 +32,7 @@ const App = () => {
     <div id="app">
       <Router>
         <Routes>
-          <Route path="/" element={<Navbar user={user} />}>
+          <Route path="/" element={<Navbar user={user} isLoggedIn={isLoggedIn}/>}>
             <Route path="Home" element={<Home />} />
             <Route path="Login" element={<Login setUser={setUser} setIsLoggedIn={setIsLoggedIn} />} />
             <Route path="Register" element={<Register />} />
