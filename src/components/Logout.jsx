@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 
-const Logout = () => {
+const Logout = (props) => {
   const user = useState("");
   async function handleLogout(event) {
     event.preventDefault();
     localStorage.removeItem("token");
     localStorage.removeItem("username");
-    console.log(user, "user");
+    props.setIsLoggedIn(false)
+    props.setUser("")
   }
 
   return (
