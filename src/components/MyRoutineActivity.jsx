@@ -15,10 +15,12 @@ const MyRoutineActivity = (props) => {
   const [duration, setDuration] = useState(0);
   const [count, setCount] = useState(0);
   const [activities, setActivities] = useState([]);
+  const [update, setUpdate] = useState(false);
   const [filteredActivities, setFilteredActivities] = useState([]);
   const [updateActivity, setUpdateActivity] = useState(false);
-  const [newCount, setNewCount]= useState(routine.count)
-  const [newDuration, setNewDuration]= useState(routine.duration)
+  // const [newCount, setNewCount]= useState(0)
+  // const [newDuration, setNewDuration]= useState(0)
+  
 
   //All activities
   useEffect(() => {
@@ -53,18 +55,18 @@ const MyRoutineActivity = (props) => {
     });
   }
 
-  //Edit Activity 
+//   //Edit Activity 
 
-  async function editActivityHandle (e) {
-    e.preventDefault();
+//   async function editActivityHandle (e) {
+//     e.preventDefault();
 
-    const updatedRoutineActivity = await updateMyRoutineActivity({
-        routineActivityId: routine.routineActivityId,
-      count: count,
-      duration: duration,
-    });
+//     const updatedRoutineActivity = await updateMyRoutineActivity({
+//         routineActivityId: newActivityId,
+//       count: count,
+//       duration: duration,
+//     });
 
-  }
+//   }
 
   return (
     <div className="myroutines-activity-form">
@@ -113,7 +115,7 @@ const MyRoutineActivity = (props) => {
         </form>
       ) : (
         <>
-            <button
+            {/* <button
             className="myroutines-button"
             type="submit"
             onClick={(e) => {
@@ -121,7 +123,7 @@ const MyRoutineActivity = (props) => {
             }}
           >
             Edit
-          </button>
+          </button> */}
           <button
             className="myroutines-button"
             type="submit"
@@ -147,6 +149,7 @@ const MyRoutineActivity = (props) => {
         {activity.length ? (
           activity.map((activity) => {
             return (
+            <>
               <div className="routine-activity" key={activity.id}>
                 <div>Name: {activity.name} </div>
                 <div>Description: {activity.description} </div>
@@ -154,8 +157,55 @@ const MyRoutineActivity = (props) => {
                 <div>Duration: {activity.duration} </div>
                 <br></br>
               </div>
-            );
-          })
+              {update ? (
+          <form onSubmit={handleSubmit} id={routine.id}>
+            <h3>Edit your activity!</h3>
+            <input
+              name="count"
+              type="text"
+              value={newCount}
+              placeholder="count"
+              onChange={(e) => {
+                setNewCount(e.target.value);
+              }}
+            ></input>
+            <input
+              name="name"
+              type="text"
+              value={newDuration}
+              placeholder="duration"
+              onChange={(e) => {
+                setNewDuration(e.target.value);
+              }}
+            ></input>
+
+            <button
+              type="button"
+              className="myroutines-button"
+              onClick={() => {
+                setUpdate(false);
+              }}
+            >
+              Undo
+            </button>
+            <button type="submit" className="myroutines-button">
+              Update Routine
+            </button>
+          </form>
+        ) : (
+          <button
+            className="myroutines-button"
+            type="submit"
+            onClick={() => {
+              setUpdate(true);
+            }}
+          >
+            Edit
+          </button>
+        )}</>
+          
+          
+          )})
         ) : (
           <div>Loading Activities</div>
         )}

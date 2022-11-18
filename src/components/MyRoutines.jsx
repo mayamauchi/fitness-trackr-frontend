@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { SingleRoutine, MyRoutineActivity } from "./";
+import { SingleRoutine, MyRoutineActivity, EditMyRoutineActivity } from "./";
 
 import {
   editRoutine,
   deleteRoutine,
   createRoutine,
   getUserRoutines,
-  addActivityToRoutine
+  addActivityToRoutine,
+  
 } from "../api-adapter";
 
 const MyRoutines = (props) => {
@@ -38,6 +39,7 @@ const MyRoutines = (props) => {
       const username = localStorage.getItem("username");
 
       const routinesList = await getUserRoutines(username, token);
+      console.log(routinesList)
       setRoutines(routinesList);
     }
     allRoutines();
@@ -86,6 +88,10 @@ const MyRoutines = (props) => {
                 routine={routine}
                 key={`routineActivity-${routine.id}`}
                 ></MyRoutineActivity>
+                {/* <EditMyRoutineActivity
+                routine={routine}
+                key={`editroutineActivity-${routine.id}`}
+                ></EditMyRoutineActivity> */}
                 </div>
               );
             })

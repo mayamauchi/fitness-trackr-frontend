@@ -226,11 +226,15 @@ export async function addActivityToRoutine(routineId,{ activityId, count, durati
   }
   }
 
-  export async function updateMyRoutineActivity({routineActivityId, count, duration}) {
+  export async function updateMyRoutineActivity(token, 
+  
+    {routineActivityId, count, duration} ) {
+
     const options = {
       method: "PATCH",
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({
         count: count,
