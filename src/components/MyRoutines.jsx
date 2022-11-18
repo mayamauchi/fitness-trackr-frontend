@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { SingleRoutine } from "./";
+import { SingleRoutine, MyRoutineActivity } from "./";
 
 import {
   editRoutine,
@@ -75,10 +75,17 @@ const MyRoutines = (props) => {
           {routines.length ? (
             routines.map((routine) => {
               return (
+                <div key={`routine-${routine.id}`}>
+                
                 <SingleRoutine
                   routine={routine}
                   key={`routine-${routine.id}`}
                 />
+                <MyRoutineActivity
+                routine={routine}
+                key={`routineActivity-${routine.id}`}
+                ></MyRoutineActivity>
+                </div>
               );
             })
           ) : (

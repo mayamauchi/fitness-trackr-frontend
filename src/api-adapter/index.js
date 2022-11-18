@@ -225,3 +225,25 @@ export async function addActivityToRoutine(routineId,{ activityId, count, durati
     console.error(error)
   }
   }
+
+  export async function updateMyRoutineActivity({routineActivityId, count, duration}) {
+    const options = {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        count: count,
+        duration: duration,
+      })
+    }
+    try {
+      const response = await fetch (`${BASE_URL}/api/routines/${routineActivityId}/activities`, options);
+      const result = await response.json();
+      console.log(result);
+      return result;
+      
+    } catch (error) {
+      console.error(error)
+    }
+    }
