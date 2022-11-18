@@ -12,9 +12,9 @@ const SingleRoutine = (props) => {
 
   const [newName, setNewName] = useState(routine.name);
   const [newGoal, setNewGoal] = useState(routine.goal);
-  const [newIsPublic, setNewIsPublic] = useState(routine.activities.name);
+  const [isPublic, setIsPublic] = useState(routine.isPublic);
   const [update, setUpdate] = useState(false);
-  const [newActivityId, setNewActivityId] = useState("");
+  const [newActivityId, setNewActivityId] = useState(null);
   const [duration, setDuration] = useState(0);
   const [count, setCount] = useState(0);
   const [activities, setActivities] = useState([]);
@@ -52,17 +52,15 @@ const SingleRoutine = (props) => {
     const updated = await editRoutine(toUpdate, token, {
       name: newName,
       goal: newGoal,
-      isPublic: newIsPublic,
+      isPublic: isPublic,
     });
   }
 
   //Add activity to routine
   async function addActivityHandle(e) {
     e.preventDefault();
-    const updateActivity = e.target.id;
 
-    const newActivity = await addActivityToRoutine(updateActivity, {
-        routineId: routine.id,
+    const newActivity = await addActivityToRoutine(routine.id, {
         activityId: newActivityId,
       count: count,
       duration: duration,
@@ -73,7 +71,7 @@ const SingleRoutine = (props) => {
   const handleChange = (e) => {
     if (e.target.check) {
       console.log("checked");
-      setNewIsPublic(); // remove username? or pass in createRoutine route?
+      setIsPublic(); // remove username? or pass in createRoutine route?
     }
   };
 
@@ -120,10 +118,13 @@ const SingleRoutine = (props) => {
           ></input>
           <label className="isPublic">Make this public?</label>
           <input
+            defaultChecked = {isPublic}
             name="isPublic"
             type="checkbox"
-            value={newIsPublic}
-            onChange={handleChange}
+            value={isPublic}
+            onChange={() => {
+                setIsPublic((prev)=>{return !prev})
+            }}
           ></input>
 
           <button
@@ -164,7 +165,7 @@ const SingleRoutine = (props) => {
       </div>
 
       <div className="myroutines-activity-form">
-      <h3>Update your activity!</h3>
+      <h3>Add an Activity</h3>
       {updateActivity ? (
       <form onSubmit={addActivityHandle} id={newActivityId}>
         <select
@@ -202,7 +203,7 @@ const SingleRoutine = (props) => {
             }}
           ></input>
           <button type="submit" className="myroutines-activity-button">
-            Update Activity
+            Add Activity
           </button>
           
           
@@ -217,7 +218,7 @@ const SingleRoutine = (props) => {
             setUpdateActivity(true);
           }}
         >
-          Edit
+          Add
         </button>
         <button
             className="myroutines-button"
@@ -232,8 +233,8 @@ const SingleRoutine = (props) => {
           </>
       )}
       <div>
-        {routine.activities.length ? (
-          routine.activities.map((activity) => {
+        {activity.length ? (
+          activity.map((activity) => {
             return (
               <div className="routine-activity">
                 <div>Id: {activity.id} </div>

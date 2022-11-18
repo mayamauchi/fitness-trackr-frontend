@@ -203,11 +203,13 @@ try {
 }
 }
 
-export async function addActivityToRoutine({routineId, activityId, count, duration}) {
+export async function addActivityToRoutine(routineId,{ activityId, count, duration}) {
   const options = {
     method: "POST",
+    headers: {
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify({
-      routineId: routineId,
       activityId: activityId,
       count: count,
       duration: duration,
