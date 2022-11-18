@@ -4,6 +4,7 @@ import { createActivity} from '../api-adapter';
 
 
 const CreateActivity = (props) => {
+    console.log(props)
     const [name, setName] = useState("");
     const [description, setDescription] = useState("")
     const navigate = useNavigate()

@@ -7,7 +7,7 @@ import {
   deleteRoutine,
   createRoutine,
   getUserRoutines,
-  
+  addActivityToRoutine
 } from "../api-adapter";
 
 const MyRoutines = (props) => {
