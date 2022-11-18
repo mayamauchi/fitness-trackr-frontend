@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { getActivities } from "../api-adapter";
 import { SingleActivity, CreateActivity } from "./";
 
-
 const Activities = () => {
   const [activities, setActivities] = useState([]);
   useEffect(() => {
@@ -13,17 +12,18 @@ const Activities = () => {
     allActivities();
   }, []);
 
-
   return (
     <div className="activities-container">
-        <CreateActivity activities={activities} setActivities={setActivities}/>
+      <CreateActivity activities={activities} setActivities={setActivities} />
       <h2>Activities</h2>
       <div id="activitiesList">
         {activities && activities.length ? (
           activities.map((activity) => {
             return (
-              <SingleActivity activity={activity} key={`activity-${activity.id}`}/>
-              
+              <SingleActivity
+                activity={activity}
+                key={`activity-${activity.id}`}
+              />
             );
           })
         ) : (

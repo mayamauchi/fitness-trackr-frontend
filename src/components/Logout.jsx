@@ -1,21 +1,22 @@
-import React from 'react';
+import React, { useState } from "react";
 
-const Logout = (props) => {
-    async function clearUser(event) {
-        event.preventDefault();
-        localStorage.removeItem('token');
-        localStorage.removeItem('username');
-        
-    }
+const Logout = () => {
+  const user = useState("");
+  async function handleLogout(event) {
+    event.preventDefault();
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    console.log(user, "user");
+  }
 
-    return (
-        <div>
-            <form onSubmit={clearUser}>
-                <button id="logoutBtn" type='submit'>
-                    Logout
-                </button>
-            </form>
-        </div>
-    );
+  return (
+    <div>
+      <form onSubmit={handleLogout}>
+        <button id="logoutBtn" type="submit">
+          Logout
+        </button>
+      </form>
+    </div>
+  );
 };
 export default Logout;

@@ -1,38 +1,30 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../api-adapter";
-import {toast} from 'react-toastify'; 
+import { toast } from "react-toastify";
 
-
-const Login = ({setUser}) => {
-  
+const Login = ({ setUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   async function handleLogin(event) {
-    
     event.preventDefault();
-    console.log(username, password);
     const { token, user } = await loginUser(username, password);
-    console.log(token)
     
     localStorage.removeItem("token");
     localStorage.setItem("token", token);
     localStorage.removeItem("username");
     localStorage.setItem("username", username);
-
+    isLoggedIn(true)
     setUsername("");
     setPassword("");
-    setUser(user)
-    console.log(user, "boo")
+    setUser(user);
 
     if (token) {
-      toast.success("Login Successful")
-
+      toast.success("Login Successful");
     } else {
-      toast.error("Login Failed")
-
+      toast.error("Login Failed");
     }
     navigate("/Home");
 
@@ -67,7 +59,9 @@ const Login = ({setUser}) => {
       </form>
       <br />
       <h3>Not Yet a User?</h3>
-      <Link to="/register" className="link">Register</Link>
+      <Link to="/register" className="link">
+        Register
+      </Link>
     </div>
   );
 };
