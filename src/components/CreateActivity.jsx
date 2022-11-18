@@ -47,4 +47,3 @@ const CreateActivity = (props) => {
 }
 
 export default CreateActivity;
- 
