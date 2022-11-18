@@ -8,6 +8,7 @@ const Logout = (props) => {
     localStorage.removeItem("username");
     props.setIsLoggedIn(false)
     props.setUser("")
+    window.location.reload()
   }
 
   return (

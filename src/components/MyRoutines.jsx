@@ -29,6 +29,7 @@ const MyRoutines = (props) => {
     setName("");
 
     navigate("/MyRoutines");
+    window.location.reload()
   }
 
   useEffect(() => {
