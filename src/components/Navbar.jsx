@@ -4,6 +4,7 @@ import {LoggedIn, Logout} from "./";
 
 const Navbar = (props) => {
   const user = props.user;
+  const setUser = props.setUser
   const handleLogout = props.handleLogout
   const isLoggedIn = props.isLoggedIn
   const setIsLoggedIn = props.setIsLoggedIn
@@ -12,7 +13,7 @@ const Navbar = (props) => {
       <div>
       <h2>Fitness Tracker</h2>
       <LoggedIn user={user}/>
-      {isLoggedIn ? <Logout handleLogout={handleLogout} setIsLoggedIn={setIsLoggedIn}/> : null
+      {isLoggedIn ? <Logout handleLogout={handleLogout} setUser={setUser} setIsLoggedIn={setIsLoggedIn}/> : null
 }
       
       </div>

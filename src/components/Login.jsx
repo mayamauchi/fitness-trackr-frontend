@@ -3,11 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../api-adapter";
 import { toast } from "react-toastify";
 
-const Login = ({ setUser }) => {
+const Login = ({ setUser, setIsLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
   async function handleLogin(event) {
     event.preventDefault();
     const { token, user } = await loginUser(username, password);
@@ -16,11 +15,10 @@ const Login = ({ setUser }) => {
     localStorage.setItem("token", token);
     localStorage.removeItem("username");
     localStorage.setItem("username", username);
-    isLoggedIn(true)
     setUsername("");
     setPassword("");
     setUser(user);
-
+    setIsLoggedIn(true)
     if (token) {
       toast.success("Login Successful");
     } else {

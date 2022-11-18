@@ -19,20 +19,22 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
     const localToken = localStorage.getItem("token");
-    if (localToken) {
+    if (localToken && !isLoggedIn) {
+        console.log("dangerous ")
       async function fetchUser() {
         const me = await authUser(localToken);
         setUser(me);
+        setIsLoggedIn(true)
       }
       fetchUser();
     }
-  }, []);
+  }, [isLoggedIn]);
 
   return (
     <div id="app">
       <Router>
         <Routes>
-          <Route path="/" element={<Navbar user={user} isLoggedIn={isLoggedIn}/>}>
+          <Route path="/" element={<Navbar setUser={setUser} user={user} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}>
             <Route path="Home" element={<Home />} />
             <Route path="Login" element={<Login setUser={setUser} setIsLoggedIn={setIsLoggedIn} />} />
             <Route path="Register" element={<Register />} />
