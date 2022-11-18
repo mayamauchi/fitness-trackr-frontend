@@ -8,6 +8,8 @@ import {
   Navbar,
   Register,
   Routines,
+  MyRoutineActivity,
+  EditMyRoutineActivity
 } from "./";
 import { authUser } from "../api-adapter";
 import { ToastContainer, toast } from "react-toastify";
