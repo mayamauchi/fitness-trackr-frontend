@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { SingleRoutine, MyRoutineActivity, EditMyRoutineActivity } from "./";
+import { SingleMyRoutine, MyRoutineActivity, EditMyRoutineActivity } from "./";
 
 import {
   editRoutine,
@@ -18,6 +18,8 @@ const MyRoutines = (props) => {
   const [goal, setGoal] = useState("");
   const [routines, setRoutines] = useState([]);
   const [isPublic, setIsPublic] = useState(false);
+  
+  
  
 
   const navigate = useNavigate();
@@ -30,7 +32,6 @@ const MyRoutines = (props) => {
     setName("");
 
     navigate("/MyRoutines");
-    window.location.reload()
   }
 
   useEffect(() => {
@@ -44,6 +45,19 @@ const MyRoutines = (props) => {
     }
     allRoutines();
   }, []);
+
+  //Edit Routine
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const toUpdate = e.target.id;
+    const token = localStorage.getItem("token");
+    const updated = await editRoutine(toUpdate, token, {
+      name: newName,
+      goal: newGoal,
+      isPublic: isPublic,
+    },
+    window.location.reload());
+  }
 
   return (
     <div className="myRoutines-container">
@@ -79,8 +93,8 @@ const MyRoutines = (props) => {
             routines.map((routine) => {
               return (
                 <div key={`routine-${routine.id}`}>
-                
-                <SingleRoutine
+                                  
+                <SingleMyRoutine
                   routine={routine}
                   key={`routine-${routine.id}`}
                 />
