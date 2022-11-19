@@ -13,7 +13,6 @@ import {
 
 const MyRoutines = (props) => {
   const routine = props.routine;
-  //   console.log(routine);
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
   const [routines, setRoutines] = useState([]);
@@ -46,18 +45,7 @@ const MyRoutines = (props) => {
     allRoutines();
   }, []);
 
-  //Edit Routine
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const toUpdate = e.target.id;
-    const token = localStorage.getItem("token");
-    const updated = await editRoutine(toUpdate, token, {
-      name: newName,
-      goal: newGoal,
-      isPublic: isPublic,
-    },
-    window.location.reload());
-  }
+  
 
   return (
     <div className="myRoutines-container">
@@ -96,16 +84,12 @@ const MyRoutines = (props) => {
                                   
                 <SingleMyRoutine
                   routine={routine}
-                  key={`routine-${routine.id}`}
+                  key={`singleRoutine-${routine.id}`}
                 />
                 <MyRoutineActivity
                 routine={routine}
                 key={`routineActivity-${routine.id}`}
                 ></MyRoutineActivity>
-                {/* <EditMyRoutineActivity
-                routine={routine}
-                key={`editroutineActivity-${routine.id}`}
-                ></EditMyRoutineActivity> */}
                 </div>
               );
             })
