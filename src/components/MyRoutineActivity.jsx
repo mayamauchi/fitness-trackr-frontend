@@ -55,18 +55,6 @@ const MyRoutineActivity = (props) => {
     });
   }
 
-//   //Edit Activity 
-
-//   async function editActivityHandle (e) {
-//     e.preventDefault();
-
-//     const updatedRoutineActivity = await updateMyRoutineActivity({
-//         routineActivityId: newActivityId,
-//       count: count,
-//       duration: duration,
-//     });
-
-//   }
 
   return (
     <div className="myroutines-activity-form">
@@ -134,7 +122,7 @@ const MyRoutineActivity = (props) => {
             Add
           </button>
           <button
-            className="myroutines-button"
+            className="myroutineactivity-button"
             type="submit"
             id={activity.id ? `${activity.id}` : null}
             onClick={(e) => {
