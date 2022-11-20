@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { SingleMyRoutine, MyRoutineActivity, EditMyRoutineActivity } from "./";
+import { SingleMyRoutine, MyRoutineActivity } from "./";
 
 import {
-  editRoutine,
-  deleteRoutine,
   createRoutine,
   getUserRoutines,
-  addActivityToRoutine,
-  
 } from "../api-adapter";
 
 const MyRoutines = (props) => {
@@ -17,9 +13,6 @@ const MyRoutines = (props) => {
   const [goal, setGoal] = useState("");
   const [routines, setRoutines] = useState([]);
   const [isPublic, setIsPublic] = useState(false);
-  
-  
- 
 
   const navigate = useNavigate();
   async function handleSubmit(e) {
@@ -39,13 +32,10 @@ const MyRoutines = (props) => {
       const username = localStorage.getItem("username");
 
       const routinesList = await getUserRoutines(username, token);
-      console.log(routinesList)
       setRoutines(routinesList);
     }
     allRoutines();
   }, []);
-
-  
 
   return (
     <div className="myRoutines-container">
@@ -81,15 +71,14 @@ const MyRoutines = (props) => {
             routines.map((routine) => {
               return (
                 <div key={`routine-${routine.id}`}>
-                                  
-                <SingleMyRoutine
-                  routine={routine}
-                  key={`singleRoutine-${routine.id}`}
-                />
-                <MyRoutineActivity
-                routine={routine}
-                key={`routineActivity-${routine.id}`}
-                ></MyRoutineActivity>
+                  <SingleMyRoutine
+                    routine={routine}
+                    key={`singleRoutine-${routine.id}`}
+                  />
+                  <MyRoutineActivity
+                    routine={routine}
+                    key={`routineActivity-${routine.id}`}
+                  ></MyRoutineActivity>
                 </div>
               );
             })
@@ -100,8 +89,6 @@ const MyRoutines = (props) => {
       </div>
     </div>
   );
-
 };
-
 
 export default MyRoutines;

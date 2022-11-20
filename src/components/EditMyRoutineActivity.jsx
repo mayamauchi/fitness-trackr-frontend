@@ -3,19 +3,13 @@ import { getActivities, updateMyRoutineActivity } from "../api-adapter";
 
 const EditMyRoutineActivity = (props) => {
   const routine = props.routine;
-  //   const activity = props.routine.activities;
-
-  // console.log(activity)
   const [newCount, setNewCount] = useState(0);
   const [newDuration, setNewDuration] = useState(0);
-
   const [newActivityId, setNewActivityId] = useState("");
   const [activities, setActivities] = useState(routine.activities);
 
   //Edit Activity
-
   async function handleSubmit(e) {
-
     e.preventDefault();
     const toUpdate = e.target.id;
     const token = localStorage.getItem("token");
@@ -34,28 +28,29 @@ const EditMyRoutineActivity = (props) => {
           ? activities.map((activity) => {
               return (
                 <>
-                    <div key={activity.id}></div>    
+                  <div key={activity.id}></div>
                   <div>Name: {activity.name} </div>
                   <div>Description: {activity.description} </div>
                   <div>Count: {activity.newCount} </div>
                   <div>Duration: {activity.newDuration} </div>
-                    <h1>Hello world</h1>
+                  <h1>Hello world</h1>
 
-
-           <button
-          className="myroutines-button"
-          type="submit"
-          id={routine.id ? `${routine.id}` : null}
-          onClick={(e) => {
-            handleDelete(e);
-          }}
-             >
-               Pete
-           </button>
-           </>
-        )
-      } 
-    ):null
-  }</div> </>)
-}
+                  <button
+                    className="myroutines-button"
+                    type="submit"
+                    id={routine.id ? `${routine.id}` : null}
+                    onClick={(e) => {
+                      handleDelete(e);
+                    }}
+                  >
+                    Pete
+                  </button>
+                </>
+              );
+            })
+          : null}
+      </div>{" "}
+    </>
+  );
+};
 export default EditMyRoutineActivity;

@@ -1,26 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useParams } from "react";
 import {
   editRoutine,
   deleteRoutine,
   getActivities,
   addActivityToRoutine,
-  updateMyRoutineActivity
+  updateMyRoutineActivity,
+  deleteMyRoutineActivity,
 } from "../api-adapter";
 
 const MyRoutineActivity = (props) => {
   const routine = props.routine;
   const activity = props.routine.activities;
 
-  const [newActivityId, setNewActivityId] = useState(null);
+  const [newActivityId, setNewActivityId] = useState([]);
   const [duration, setDuration] = useState(0);
   const [count, setCount] = useState(0);
   const [activities, setActivities] = useState([]);
   const [update, setUpdate] = useState(false);
   const [filteredActivities, setFilteredActivities] = useState([]);
   const [updateActivity, setUpdateActivity] = useState(false);
-  // const [newCount, setNewCount]= useState(0)
-  // const [newDuration, setNewDuration]= useState(0)
-  
 
   //All activities
   useEffect(() => {
@@ -44,17 +42,27 @@ const MyRoutineActivity = (props) => {
     allActivities();
   }, []);
 
-  //Add activity to routine
+  // //Add activity to routine
   async function addActivityHandle(e) {
     e.preventDefault();
+    const token = localStorage.getItem("token");
 
-    const newActivity = await addActivityToRoutine(routine.id, {
+    const newActivity = await addActivityToRoutine(routine.id, token,{
       activityId: newActivityId,
       count: count,
       duration: duration,
     });
   }
 
+  //Delete Activity
+  async function handleDelete(e) {
+    e.preventDefault();
+    // const toDelete = e.target.id;
+    // console.log(toDelete);
+    const token = localStorage.getItem("token");
+
+    const deleted = await deleteMyRoutineActivity(newActivityId, token);
+  }
 
   return (
     <div className="myroutines-activity-form">
@@ -103,15 +111,6 @@ const MyRoutineActivity = (props) => {
         </form>
       ) : (
         <>
-            {/* <button
-            className="myroutines-button"
-            type="submit"
-            onClick={(e) => {
-                editActivityHandle(e);
-            }}
-          >
-            Edit
-          </button> */}
           <button
             className="myroutines-button"
             type="submit"
@@ -119,17 +118,7 @@ const MyRoutineActivity = (props) => {
               setUpdateActivity(true);
             }}
           >
-            Add
-          </button>
-          <button
-            className="myroutineactivity-button"
-            type="submit"
-            id={activity.id ? `${activity.id}` : null}
-            onClick={(e) => {
-              handleDelete(e);
-            }}
-          >
-            Delete
+            Add Activity
           </button>
         </>
       )}
@@ -137,63 +126,74 @@ const MyRoutineActivity = (props) => {
         {activity.length ? (
           activity.map((activity) => {
             return (
-            <>
-              <div className="routine-activity" key={activity.id}>
-                <div>Name: {activity.name} </div>
-                <div>Description: {activity.description} </div>
-                <div>Count: {activity.count} </div>
-                <div>Duration: {activity.duration} </div>
-                <br></br>
-              </div>
-              {update ? (
-          <form onSubmit={handleSubmit} id={routine.id}>
-            <h3>Edit your activity!</h3>
-            <input
-              name="count"
-              type="text"
-              value={newCount}
-              placeholder="count"
-              onChange={(e) => {
-                setNewCount(e.target.value);
-              }}
-            ></input>
-            <input
-              name="name"
-              type="text"
-              value={newDuration}
-              placeholder="duration"
-              onChange={(e) => {
-                setNewDuration(e.target.value);
-              }}
-            ></input>
+              <>
+                <div className="routine-activity" key={activity.id}>
+                  <div>Name: {activity.name} </div>
+                  <div>Description: {activity.description} </div>
+                  <div>Count: {activity.count} </div>
+                  <div>Duration: {activity.duration} </div>
+                  <br></br>
+                </div>
 
-            <button
-              type="button"
-              className="myroutines-button"
-              onClick={() => {
-                setUpdate(false);
-              }}
-            >
-              Undo
-            </button>
-            <button type="submit" className="myroutines-button">
-              Update Routine
-            </button>
-          </form>
-        ) : (
-          <button
-            className="myroutines-button"
-            type="submit"
-            onClick={() => {
-              setUpdate(true);
-            }}
-          >
-            Edit
-          </button>
-        )}</>
-          
-          
-          )})
+                {update ? (
+                  <form onSubmit={handleSubmit} id={routine.id}>
+                    <h3>Edit your activity!</h3>
+                    <input
+                      name="count"
+                      type="text"
+                      value={newCount}
+                      placeholder="count"
+                      onChange={(e) => {
+                        setNewCount(e.target.value);
+                      }}
+                    ></input>
+                    <input
+                      name="name"
+                      type="text"
+                      value={newDuration}
+                      placeholder="duration"
+                      onChange={(e) => {
+                        setNewDuration(e.target.value);
+                      }}
+                    ></input>
+
+                    <button
+                      type="button"
+                      className="myroutines-button"
+                      onClick={() => {
+                        setUpdate(false);
+                      }}
+                    >
+                      Undo
+                    </button>
+                    <button type="submit" className="myroutines-button">
+                      Update Routine
+                    </button>
+                  </form>
+                ) : (
+                  <button
+                    className="myroutines-button"
+                    type="submit"
+                    onClick={() => {
+                      setUpdate(true);
+                    }}
+                  >
+                    Edit
+                  </button>
+                )}
+                <button
+                  className="myroutines-button"
+                  type="submit"
+                  id={routine.id ? `${routine.id}` : null}
+                  onClick={(e) => {
+                    handleDelete(e);
+                  }}
+                >
+                  Delete
+                </button>
+              </>
+            );
+          })
         ) : (
           <div>Loading Activities</div>
         )}
