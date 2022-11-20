@@ -3,7 +3,6 @@ import {
   editRoutine,
   deleteRoutine,
   getActivities,
-//   addActivityToRoutine,
 } from "../api-adapter";
 
 const SingleMyRoutine = (props) => {

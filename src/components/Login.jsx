@@ -10,7 +10,7 @@ const Login = ({ setUser, setIsLoggedIn }) => {
   async function handleLogin(event) {
     event.preventDefault();
     const { token, user } = await loginUser(username, password);
-    
+
     localStorage.removeItem("token");
     localStorage.setItem("token", token);
     localStorage.removeItem("username");
@@ -18,15 +18,17 @@ const Login = ({ setUser, setIsLoggedIn }) => {
     setUsername("");
     setPassword("");
     setUser(user);
-    setIsLoggedIn(true)
+    setIsLoggedIn(true);
+    
     if (token) {
       toast.success("Login Successful");
+      navigate("/Home");
     } else {
       toast.error("Login Failed");
-    }
-    navigate("/Home");
+      navigate("/Login");
 
-    //work on logout function
+    }
+    
   }
   return (
     <div className="login-container">

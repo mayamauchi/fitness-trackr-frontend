@@ -20,6 +20,7 @@ const CreateActivity = (props) => {
     setName("");
     setDescription("");
     console.log(newActivity, "new")
+    
     if (newActivity.name === "NotFound") {
         toast.error("Activity Already Exists");
       } else {

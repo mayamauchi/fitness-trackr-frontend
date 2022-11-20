@@ -16,7 +16,7 @@ const SingleRoutine = (props) => {
         {activity.length ? (
           activity.map((activity) => {
             return (
-              <div className="routine-activity">
+              <div className="routine-activity" key={activity.id}>
                 <div>Name: {activity.name} </div>
                 <div>Description: {activity.description} </div>
                 <div>Count: {activity.count} </div>
