@@ -44,4 +44,13 @@ Start the server
 This will start the app on port 3000 by default. You can change the port by setting the PORT environment variable.
 
 
+## Usage
+
+To use the app, simply navigate to http://localhost:3000/ in your web browser. You can sign up for an account, log in, and start tracking your workouts and exercises. The app allows you to:
+
+- Create, read, update, and delete workouts
+- Create, read, update, and delete exercises
+- Assign exercises to workouts
+
+
 
