@@ -2,7 +2,7 @@
 # Fitness Trackr - Frontend
 This is the frontend component of Fitness Trackr, a web application for tracking workouts and exercises. 
 
-It was developed as part of the Fullstack Academy curriculum. The frontend is built using React and communicates with the backend via a RESTful API.
+It was developed as part of the Fullstack Academy curriculum. The frontend is built using React and communicates with the [backend](https://github.com/mayamauchi/FitnessTrackr-backend) via a RESTful API.
 
 
 
